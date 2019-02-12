@@ -59,8 +59,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskNameText.setText(task.getName());
         holder.taskNameText.getPaint().setFakeBoldText(true);
         holder.taskInfoText.setText(task.getInfo());
-        holder.reviewNumText.setText(task.getReviewNum());
-        holder.providerNumText.setText(task.getProviderNum());
+        holder.reviewNumText.setText(task.getReviewNum()+"");
+        holder.providerNumText.setText(task.getProviderNum()+"");
         switch (task.getType()){
             case Task.TYPE_PICTURE:
                 holder.taskTypeButton.setText("图片");
