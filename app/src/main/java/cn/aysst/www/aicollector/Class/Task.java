@@ -17,12 +17,16 @@ public class Task {
     private String info;
     private int type;
     private int belong;
+    private int reviewNum;
+    private int providerNum;
 
-    public Task(String name,String info,int type,int belong){
+    public Task(String name,String info,int type,int belong,int reviewNum,int providerNum){
         this.name = name;
         this.info = info;
         this.type = type;
         this.belong = belong;
+        this.reviewNum = reviewNum;
+        this.providerNum = providerNum;
     }
 
     public String getName() {
@@ -51,5 +55,19 @@ public class Task {
     }
     public void setBelong(int belong) {
         this.belong = belong;
+    }
+
+    public int getReviewNum() {
+        return reviewNum;
+    }
+    public void setReviewNum(int reviewNum) {
+        this.reviewNum = reviewNum;
+    }
+
+    public int getProviderNum() {
+        return providerNum;
+    }
+    public void setProviderNum(int providerNum) {
+        this.providerNum = providerNum;
     }
 }

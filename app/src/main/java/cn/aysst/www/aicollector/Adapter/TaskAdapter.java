@@ -27,12 +27,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         TextView taskNameText;
         Button taskTypeButton;
         TextView taskInfoText;
+        TextView reviewNumText;
+        TextView providerNumText;
         public ViewHolder(View view){
             super(view);
             cardView = (CardView)view;
             taskNameText = (TextView)view.findViewById(R.id.task_name);
             taskTypeButton = (Button)view.findViewById(R.id.task_type);
             taskInfoText = (TextView)view.findViewById(R.id.task_info);
+            reviewNumText = (TextView)view.findViewById(R.id.review_number);
+            providerNumText = (TextView)view.findViewById(R.id.provider_number);
         }
     }
 
@@ -55,6 +59,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskNameText.setText(task.getName());
         holder.taskNameText.getPaint().setFakeBoldText(true);
         holder.taskInfoText.setText(task.getInfo());
+        holder.reviewNumText.setText(task.getReviewNum());
+        holder.providerNumText.setText(task.getProviderNum());
         switch (task.getType()){
             case Task.TYPE_PICTURE:
                 holder.taskTypeButton.setText("图片");

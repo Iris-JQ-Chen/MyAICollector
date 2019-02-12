@@ -69,7 +69,7 @@ public class FragmentHome extends Fragment{
 		taskList.clear();
 		for(int i = 0;i<50;i++){
 			Random random = new Random();
-			taskList.add(new Task("任务"+i,"任务"+i+"的信息",random.nextInt(3),Task.OTHER_TASK));
+			taskList.add(new Task("任务"+i,"任务"+i+"的信息",random.nextInt(3),Task.OTHER_TASK,new Random().nextInt(50),new Random().nextInt(600)));
 		}
 	}
 
