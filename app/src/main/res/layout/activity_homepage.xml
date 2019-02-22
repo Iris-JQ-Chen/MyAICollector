@@ -151,52 +151,33 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="3"/>
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_weight="3"
                         android:src="@drawable/ic_mail"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/my_mail_onhomepage"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
-                        android:text="我的邮箱"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:text="我的邮箱:"
                         android:textSize="22sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#dbdbdb"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"/>
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_weight="3"
-                        android:src="@drawable/ic_sex"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
+                        android:id="@+id/show_mail_onhomepage"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
-                        android:text="我的性别"
-                        android:textSize="22sp"/>
+                        android:layout_weight="5"
+                        android:gravity="left"
+                        android:textSize="18sp"
+                        android:text="lcy@mail"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -211,22 +192,32 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="3"/>
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_weight="3"
                         android:src="@drawable/ic_phone"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/my_phone_onhomepage"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="15dp"
+                        android:clickable="true"
                         android:text="我的手机"
                         android:textSize="22sp"/>
+                    <TextView
+                        android:id="@+id/show_phone_onhomepage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="left"
+                        android:textSize="18sp"
+                        android:text="12345678901"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,22 +232,32 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="3"/>
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_weight="3"
-                        android:src="@drawable/ic_collect"/>
+                        android:src="@drawable/ic_sex"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
                     <TextView
+                        android:id="@+id/my_sex_onhomepage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="15dp"
+                        android:clickable="true"
+                        android:text="我的性别"
+                        android:textSize="22sp"/>
+                    <TextView
+                        android:id="@+id/show_sex_onhomepage"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
-                        android:text="我的收藏"
-                        android:textSize="22sp"/>
+                        android:layout_weight="5"
+                        android:gravity="left"
+                        android:textSize="18sp"
+                        android:text="男"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,22 +272,70 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="3"/>
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_weight="3"
+                        android:src="@drawable/ic_collect"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/my_collect_onhomepage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="15dp"
+                        android:clickable="true"
+                        android:text="我的收藏"
+                        android:textSize="22sp"/>
+                    <TextView
+                        android:id="@+id/show_collect_onhomepage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="left"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#dbdbdb"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/ic_lable"/>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/my_tag_onhomepage"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="15dp"
+                        android:clickable="true"
                         android:text="我的标签"
                         android:textSize="22sp"/>
+                    <TextView
+                        android:id="@+id/show_tag_onhomepage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:gravity="left"
+                        android:textSize="18sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
