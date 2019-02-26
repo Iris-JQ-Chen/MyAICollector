@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -68,7 +69,18 @@ public class FragmentRelease extends Fragment{
 		taskList.clear();
 		for(int i = 0;i<50;i++){
 			Random random = new Random();
-			taskList.add(new Task("我的任务"+i,"我的任务"+i+"的信息",random.nextInt(3),Task.OTHER_TASK,new Random().nextInt(50),new Random().nextInt(600)));
+			Task task = new Task("我的任务"+i,"我的任务"+i+"的信息",random.nextInt(3),Task.MY_TASK,new Random().nextInt(50),new Random().nextInt(600));
+			task.setPublishId(new Random().nextInt());
+			task.setGold(new Random().nextDouble());
+			Calendar calendar = Calendar.getInstance();
+			int year = calendar.get(Calendar.YEAR);
+			int month = calendar.get(Calendar.MONTH);
+			int day = calendar.get(Calendar.DAY_OF_MONTH);
+			int hour = calendar.get(Calendar.HOUR_OF_DAY);
+			int minute = calendar.get(Calendar.MINUTE);
+			int second = calendar.get(Calendar.SECOND);
+			task.setTime(year+"-"+month+"-"+day+"-"+hour+"-"+minute+"-"+second);
+			taskList.add(task);
 		}
 	}
 

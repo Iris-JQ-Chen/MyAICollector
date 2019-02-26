@@ -1,6 +1,7 @@
 package cn.aysst.www.aicollector.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.aysst.www.aicollector.DoTaskActivity;
 import cn.aysst.www.aicollector.R;
 import cn.aysst.www.aicollector.Class.Task;
+import cn.aysst.www.aicollector.SeeTaskActivity;
 
 /**
  * Created by 蒲公英之流 on 2019-02-03.
@@ -50,7 +53,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             context = parent.getContext();
         }
         View view = LayoutInflater.from(context).inflate(R.layout.task_item,parent,false);
-        return new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Task task = taskList.get(position);
+                int belong = task.getBelong();
+                if (belong == Task.MY_TASK){
+                    Intent intent = new Intent(context,SeeTaskActivity.class);
+                    intent.putExtra(SeeTaskActivity.SEE_MY_TASK,task);
+                    context.startActivity(intent);
+                }else if (belong == Task.OTHER_TASK){
+                    Intent intent = new Intent(context,DoTaskActivity.class);
+                    intent.putExtra(DoTaskActivity.DO_OTHER_TASK,task);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        return holder;
     }
 
     @Override
