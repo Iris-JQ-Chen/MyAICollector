@@ -39,7 +39,11 @@ public class FragmentRelease extends Fragment{
 		initMyTask();
 		View view = inflater.inflate(R.layout.activity_fragment_release, null);
 		recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_onrelease);
-		adapter = new TaskAdapter(taskList);
+		try {
+			adapter = new TaskAdapter(taskList);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		layoutManager = new GridLayoutManager(getActivity(),1);
 		swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swip_refresh_onrelease);
 		floatingActionButton = (FloatingActionButton)view.findViewById(R.id.release_write_onrelease);

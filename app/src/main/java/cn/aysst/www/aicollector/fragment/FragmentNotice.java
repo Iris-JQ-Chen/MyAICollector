@@ -39,7 +39,11 @@ public class FragmentNotice extends Fragment{
 		initNotices();
 		View view = inflater.inflate(R.layout.activity_fragment_notice, null);
 		recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_onnotice);
-		noticeAdapter = new NoticeAdapter(noticeList);
+		try{
+			noticeAdapter = new NoticeAdapter(noticeList);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		layoutManager = new GridLayoutManager(getActivity(),1);
 		swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swip_refresh_onnotice);
 		floatingActionButton = (FloatingActionButton)view.findViewById(R.id.pull_up_onnotice);

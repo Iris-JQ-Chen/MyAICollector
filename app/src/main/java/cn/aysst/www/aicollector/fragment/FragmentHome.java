@@ -48,7 +48,11 @@ public class FragmentHome extends Fragment{
 		View view = inflater.inflate(R.layout.activity_fragment_home,null);
 		recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_onhome);
 		layoutManager = new GridLayoutManager(getActivity(),1);
-		adapter = new TaskAdapter(taskList);
+		try {
+			adapter = new TaskAdapter(taskList);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swip_refresh_onhome);
 		floatingActionButton = (FloatingActionButton)view.findViewById(R.id.pull_up_onhome);
 

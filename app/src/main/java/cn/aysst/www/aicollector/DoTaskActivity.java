@@ -42,6 +42,7 @@ import cn.aysst.www.aicollector.Adapter.ProvidePictureTaskAdapter;
 import cn.aysst.www.aicollector.Adapter.ProvideVideoTaskAdapter;
 import cn.aysst.www.aicollector.Class.ProvideForTask;
 import cn.aysst.www.aicollector.Class.Task;
+import cn.aysst.www.aicollector.CustomException.NullListInAdapterException;
 
 public class DoTaskActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String DO_OTHER_TASK = "do_other_task";
@@ -89,23 +90,28 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         ((TextView)findViewById(R.id.other_task_name)).setText(otherTask.getName());
         ((TextView)findViewById(R.id.other_task_info)).setText(otherTask.getInfo()+"\n"+otherTask.getTime());
         ((TextView)findViewById(R.id.other_task_publisher)).setText(otherTask.getPublishId()+"");
-        switch (otherTask.getType()){
-            case Task.TYPE_PICTURE:
-                ((TextView)findViewById(R.id.other_task_type)).setText("图片");
-                prePicRecycler();
-                MY_TASK_TYPE = Task.TYPE_PICTURE;
-                break;
-            case Task.TYPE_VIDEO:
-                ((TextView)findViewById(R.id.other_task_type)).setText("视频");
-                preVidRecycler();
-                MY_TASK_TYPE = Task.TYPE_VIDEO;
-                break;
-            case Task.TYPE_AUDIO:
-                ((TextView)findViewById(R.id.other_task_type)).setText("音频");
-                preAudRecycler();
-                MY_TASK_TYPE = Task.TYPE_AUDIO;
-                break;
+        try {
+            switch (otherTask.getType()){
+                case Task.TYPE_PICTURE:
+                    ((TextView)findViewById(R.id.other_task_type)).setText("图片");
+                    prePicRecycler();
+                    MY_TASK_TYPE = Task.TYPE_PICTURE;
+                    break;
+                case Task.TYPE_VIDEO:
+                    ((TextView)findViewById(R.id.other_task_type)).setText("视频");
+                    preVidRecycler();
+                    MY_TASK_TYPE = Task.TYPE_VIDEO;
+                    break;
+                case Task.TYPE_AUDIO:
+                    ((TextView)findViewById(R.id.other_task_type)).setText("音频");
+                    preAudRecycler();
+                    MY_TASK_TYPE = Task.TYPE_AUDIO;
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
         ((TextView)findViewById(R.id.other_task_gold)).setText(otherTask.getGold()+"");
     }
 
@@ -316,7 +322,7 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * 给视频任务配置recycler
      */
-    private void preVidRecycler(){
+    private void preVidRecycler()throws NullListInAdapterException{
         recyclerViewVid = (RecyclerView)findViewById(R.id.recycler_view_ondotask);
         layoutManagerVid = new GridLayoutManager(this,1);
         provideVideoAdapter = new ProvideVideoTaskAdapter(provideList);
@@ -327,7 +333,7 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * 给图片任务配置recycler
      */
-    private void prePicRecycler(){
+    private void prePicRecycler()throws NullListInAdapterException{
         recyclerViewPic = (RecyclerView)findViewById(R.id.recycler_view_ondotask);
         layoutManagerPic = new GridLayoutManager(this,3);
         providePicAdapter = new ProvidePictureTaskAdapter(provideList);
@@ -338,7 +344,7 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * 给音频任务配置recycler
      */
-    private void preAudRecycler(){
+    private void preAudRecycler()throws NullListInAdapterException{
         recyclerViewAud = (RecyclerView)findViewById(R.id.recycler_view_ondotask);
         layoutManagerAud = new GridLayoutManager(this,1);
         provideAudAdapter = new ProvideAudioTaskAdapter(provideList);
