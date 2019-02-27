@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.aysst.www.aicollector.Class.ProvideForTask;
+import cn.aysst.www.aicollector.CustomException.NullListInAdapterException;
 import cn.aysst.www.aicollector.R;
 
 /**
@@ -29,7 +30,10 @@ public class ProvideVideoTaskAdapter extends RecyclerView.Adapter<ProvideVideoTa
         }
     }
 
-    public ProvideVideoTaskAdapter(List<ProvideForTask> provideForTaskList){
+    public ProvideVideoTaskAdapter(List<ProvideForTask> provideForTaskList) throws NullListInAdapterException {
+        if (provideForTaskList == null){
+            throw new NullListInAdapterException("ProvideVideoTaskAdapter构造时被传入空列表");
+        }
         this.provideForTaskList = provideForTaskList;
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.aysst.www.aicollector.CustomException.NullListInAdapterException;
 import cn.aysst.www.aicollector.DoTaskActivity;
 import cn.aysst.www.aicollector.R;
 import cn.aysst.www.aicollector.Class.Task;
@@ -43,7 +44,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         }
     }
 
-    public TaskAdapter(List<Task> taskList){
+    public TaskAdapter(List<Task> taskList) throws NullListInAdapterException {
+        if (taskList == null){
+            throw new NullListInAdapterException("TaskAdapter构造时被传入空列表");
+        }
         this.taskList = taskList;
     }
 

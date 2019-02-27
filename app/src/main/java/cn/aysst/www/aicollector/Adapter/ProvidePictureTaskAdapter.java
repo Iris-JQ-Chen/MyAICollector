@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import cn.aysst.www.aicollector.Class.ProvideForTask;
+import cn.aysst.www.aicollector.CustomException.NullListInAdapterException;
 import cn.aysst.www.aicollector.R;
 
 /**
@@ -32,7 +33,12 @@ public class ProvidePictureTaskAdapter extends RecyclerView.Adapter<ProvidePictu
         }
     }
 
-    public ProvidePictureTaskAdapter(List<ProvideForTask> provideForTaskList){ this.provideForTaskList = provideForTaskList; }
+    public ProvidePictureTaskAdapter(List<ProvideForTask> provideForTaskList) throws NullListInAdapterException{
+        if (provideForTaskList == null){
+            throw new NullListInAdapterException("ProvidePictureTaskAdapter构造时被传入空列表");
+        }
+        this.provideForTaskList = provideForTaskList;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

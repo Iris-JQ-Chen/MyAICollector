@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.aysst.www.aicollector.Class.Notice;
+import cn.aysst.www.aicollector.CustomException.NullListInAdapterException;
 import cn.aysst.www.aicollector.R;
 
 /**
@@ -30,7 +31,10 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         }
     }
 
-    public NoticeAdapter (List<Notice> noticeList){
+    public NoticeAdapter (List<Notice> noticeList)throws NullListInAdapterException{
+        if (noticeList == null){
+            throw new NullListInAdapterException("NoticeAdapter构造时被传入空列表");
+        }
         this.noticeList = noticeList;
     }
 

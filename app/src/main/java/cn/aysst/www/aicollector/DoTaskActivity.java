@@ -79,6 +79,9 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         Task otherTask = intent.getParcelableExtra(DO_OTHER_TASK);
         provideList = otherTask.getProvideList();
+        if (provideList == null){
+            provideList = new ArrayList<ProvideForTask>();
+        }
 
         floatingActionButton = findViewById(R.id.provide_for_task);
         floatingActionButton.setOnClickListener(this);
