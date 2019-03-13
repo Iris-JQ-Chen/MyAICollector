@@ -13,17 +13,17 @@ public class ProvideForTask implements Parcelable {
 
     private int taskType;
     private String taskName;
-    private String pictureBitStr;
-    private String videoUriStr;
+    private String pictureUriStr;
+    private String textUriStr;
     private String audioUriStr;
     private String providerName;
 
     public ProvideForTask(){}
-    public ProvideForTask(int taskType,String taskName,String pictureBitStr,String videoUriStr,String audioUriStr,String providerName){
+    public ProvideForTask(int taskType,String taskName,String pictureUriStr,String textUriStr,String audioUriStr,String providerName){
         this.taskType = taskType;
         this.taskName = taskName;
-        this.pictureBitStr = pictureBitStr;
-        this.videoUriStr = videoUriStr;
+        this.pictureUriStr = pictureUriStr;
+        this.textUriStr = textUriStr;
         this.audioUriStr = audioUriStr;
         this.providerName = providerName;
     }
@@ -42,12 +42,11 @@ public class ProvideForTask implements Parcelable {
         this.taskName = taskName;
     }
 
-    public String getPictureBitStr() {
-        return pictureBitStr;
+    public String getPictureUriStr() {
+        return pictureUriStr;
     }
-
-    public void setPictureBitStr(String pictureBitStr) {
-        this.pictureBitStr = pictureBitStr;
+    public void setPictureUriStr(String pictureUriStr) {
+        this.pictureUriStr = pictureUriStr;
     }
 
     public String getAudioUriStr() {
@@ -57,11 +56,11 @@ public class ProvideForTask implements Parcelable {
         this.audioUriStr = audioUriStr;
     }
 
-    public String getVideoUriStr() {
-        return videoUriStr;
+    public String getTextUriStr() {
+        return textUriStr;
     }
-    public void setVideoUriStr(String videoUriStr) {
-        this.videoUriStr = videoUriStr;
+    public void setTextUriStr(String textUriStr) {
+        this.textUriStr = textUriStr;
     }
 
     public String getProviderName() {
@@ -81,8 +80,8 @@ public class ProvideForTask implements Parcelable {
         dest.writeInt(taskType);
         dest.writeString(taskName);
 //        pictureBitmap.writeToParcel(dest,flags);
-        dest.writeString(pictureBitStr);
-        dest.writeString(videoUriStr);
+        dest.writeString(pictureUriStr);
+        dest.writeString(textUriStr);
         dest.writeString(audioUriStr);
         dest.writeString(providerName);
     }
@@ -94,8 +93,8 @@ public class ProvideForTask implements Parcelable {
             provideForTask.setTaskType(source.readInt());
             provideForTask.setTaskName(source.readString());
 //            provideForTask.setPictureBitmap(Bitmap.CREATOR.createFromParcel(source));
-            provideForTask.setPictureBitStr(source.readString());
-            provideForTask.setVideoUriStr(source.readString());
+            provideForTask.setPictureUriStr(source.readString());
+            provideForTask.setTextUriStr(source.readString());
             provideForTask.setAudioUriStr(source.readString());
             provideForTask.setProviderName(source.readString());
             return provideForTask;

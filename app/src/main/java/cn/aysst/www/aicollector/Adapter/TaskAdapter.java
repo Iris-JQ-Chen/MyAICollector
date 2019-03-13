@@ -95,8 +95,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             case Task.TYPE_AUDIO:
                 holder.taskTypeButton.setText("音频");
                 break;
-            case Task.TYPE_VIDEO:
-                holder.taskTypeButton.setText("视频");
+            case Task.TYPE_TEXT:
+                holder.taskTypeButton.setText("文本");
                 break;
             default:
                 break;

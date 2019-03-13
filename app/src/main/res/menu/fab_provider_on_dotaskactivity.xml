@@ -8,8 +8,8 @@
         android:title="录音机"></item>
     <item android:id="@+id/audio_file"
         android:title="音频"></item>
-    <item android:id="@+id/video_recoder"
-        android:title="录像机"></item>
-    <item android:id="@+id/video_file"
-        android:title="视频"></item>
+    <item android:id="@+id/input_text"
+        android:title="输入文本"></item>
+    <item android:id="@+id/text_file"
+        android:title="文本文件"></item>
 </menu>

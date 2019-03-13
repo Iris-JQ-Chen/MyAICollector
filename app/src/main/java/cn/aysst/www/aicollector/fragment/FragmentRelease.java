@@ -1,10 +1,15 @@
 package cn.aysst.www.aicollector.fragment;
+import cn.aysst.www.aicollector.Class.ProvideForTask;
 import cn.aysst.www.aicollector.R;
 import cn.aysst.www.aicollector.ReleaseTaskActivity;
 import cn.aysst.www.aicollector.Class.Task;
 import cn.aysst.www.aicollector.Adapter.TaskAdapter;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -72,18 +77,21 @@ public class FragmentRelease extends Fragment{
 	private void initMyTask(){
 		taskList.clear();
 		for(int i = 0;i<50;i++){
-			Random random = new Random();
-			Task task = new Task("我的任务"+i,"我的任务"+i+"的信息",random.nextInt(3),Task.MY_TASK,new Random().nextInt(50),new Random().nextInt(600));
+			int type = new Random().nextInt(3);
+			Task task = new Task("我的任务"+i,"我的任务"+i+"的信息",type,Task.MY_TASK,new Random().nextInt(50),new Random().nextInt(600));
 			task.setPublishId(new Random().nextInt());
 			task.setGold(new Random().nextDouble());
-			Calendar calendar = Calendar.getInstance();
-			int year = calendar.get(Calendar.YEAR);
-			int month = calendar.get(Calendar.MONTH);
-			int day = calendar.get(Calendar.DAY_OF_MONTH);
-			int hour = calendar.get(Calendar.HOUR_OF_DAY);
-			int minute = calendar.get(Calendar.MINUTE);
-			int second = calendar.get(Calendar.SECOND);
-			task.setTime(year+"-"+month+"-"+day+"-"+hour+"-"+minute+"-"+second);
+			task.setTime(getTime());
+			switch (type){
+				case Task.TYPE_PICTURE:
+					task.setProvideList(getProvidePicList());break;
+				case Task.TYPE_TEXT:
+					task.setProvideList(getProvideTextList());break;
+				case Task.TYPE_AUDIO:
+					task.setProvideList(getProvideAudList());break;
+				default:
+					break;
+			}
 			taskList.add(task);
 		}
 	}
@@ -112,5 +120,64 @@ public class FragmentRelease extends Fragment{
 	private void ReleaseTask(){
 		Intent intent = new Intent(getActivity(), ReleaseTaskActivity.class);
 		startActivity(intent);
+	}
+
+	private String getTime(){
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int hour = calendar.get(Calendar.HOUR_OF_DAY);
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		return ""+year+month+day+"_"+hour+minute+second;
+	}
+
+	private List<ProvideForTask> getProvidePicList(){
+		List<ProvideForTask> provideForTaskList = new ArrayList<>();
+		for(int i = 0;i<14;i++){
+			ProvideForTask provideForTask = new ProvideForTask();
+			provideForTask.setPictureUriStr(getUriFromDrawableRes(getActivity(),R.drawable.apple).toString());
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTaskList.add(provideForTask);
+		}
+		return provideForTaskList;
+	}
+
+	private List<ProvideForTask> getProvideTextList(){
+		List<ProvideForTask> provideForTaskList = new ArrayList<>();
+		for(int i = 0;i<14;i++){
+			ProvideForTask provideForTask = new ProvideForTask();
+			provideForTask.setTextUriStr("textUriStringTEST"+i);
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTaskList.add(provideForTask);
+		}
+		return provideForTaskList;
+	}
+
+	private List<ProvideForTask> getProvideAudList(){
+		List<ProvideForTask> provideForTaskList = new ArrayList<>();
+		for(int i = 0;i<14;i++){
+			ProvideForTask provideForTask = new ProvideForTask();
+			provideForTask.setAudioUriStr("audioUriStringTEST"+i);
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTaskList.add(provideForTask);
+		}
+		return provideForTaskList;
+	}
+
+	/**
+	 * 得到资源文件中图片的Uri
+	 * @param context 上下文对象
+	 * @param id 资源id
+	 * @return Uri
+	 */
+	private Uri getUriFromDrawableRes(Context context, int id) {
+		Resources resources = context.getResources();
+		String path = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+				+ resources.getResourcePackageName(id) + "/"
+				+ resources.getResourceTypeName(id) + "/"
+				+ resources.getResourceEntryName(id);
+		return Uri.parse(path);
 	}
 }

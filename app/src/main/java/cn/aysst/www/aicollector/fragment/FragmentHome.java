@@ -5,9 +5,12 @@ import cn.aysst.www.aicollector.R;
 import cn.aysst.www.aicollector.Class.Task;
 import cn.aysst.www.aicollector.Adapter.TaskAdapter;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -87,15 +90,11 @@ public class FragmentHome extends Fragment{
 			task.setTime(getTime());
 			switch (type){
 				case Task.TYPE_PICTURE:
-				    task.setProvideList(new ArrayList<ProvideForTask>());
-//					task.setProvideList(getProvidePicList());
-					break;
-				case Task.TYPE_VIDEO:
-					task.setProvideList(getProvideVidList());
-					break;
+					task.setProvideList(getProvidePicList());break;
+				case Task.TYPE_TEXT:
+					task.setProvideList(getProvideTextList());break;
 				case Task.TYPE_AUDIO:
-					task.setProvideList(getProvideAudList());
-					break;
+					task.setProvideList(getProvideAudList());break;
 				default:
 					break;
 			}
@@ -142,19 +141,21 @@ public class FragmentHome extends Fragment{
 
 	private List<ProvideForTask> getProvidePicList(){
 		List<ProvideForTask> provideForTaskList = new ArrayList<>();
-		for(int i = 0;i<4;i++){
+		for(int i = 0;i<14;i++){
 			ProvideForTask provideForTask = new ProvideForTask();
-			provideForTask.setPictureBitStr(bitmapToString(BitmapFactory.decodeResource(getResources(),R.drawable.apple)));
+			provideForTask.setPictureUriStr(getUriFromDrawableRes(getActivity(),R.drawable.apple).toString());
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
 	}
 
-	private List<ProvideForTask> getProvideVidList(){
+	private List<ProvideForTask> getProvideTextList(){
 		List<ProvideForTask> provideForTaskList = new ArrayList<>();
-		for(int i = 0;i<3;i++){
+		for(int i = 0;i<14;i++){
 			ProvideForTask provideForTask = new ProvideForTask();
-			provideForTask.setVideoUriStr("videoUriStringTEST");
+			provideForTask.setTextUriStr("textUriStringTEST"+i);
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
@@ -162,9 +163,10 @@ public class FragmentHome extends Fragment{
 
 	private List<ProvideForTask> getProvideAudList(){
 		List<ProvideForTask> provideForTaskList = new ArrayList<>();
-		for(int i = 0;i<3;i++){
+		for(int i = 0;i<14;i++){
 			ProvideForTask provideForTask = new ProvideForTask();
-			provideForTask.setAudioUriStr("audioUriStringTEST");
+			provideForTask.setAudioUriStr("audioUriStringTEST"+i);
+			provideForTask.setProviderName(new Random().nextInt(5)+"");
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
@@ -181,6 +183,21 @@ public class FragmentHome extends Fragment{
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 		byte[] imgBytes = baos.toByteArray();// 转为byte数组
 		return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+	}
+
+	/**
+	 * 得到资源文件中图片的Uri
+	 * @param context 上下文对象
+	 * @param id 资源id
+	 * @return Uri
+	 */
+	private Uri getUriFromDrawableRes(Context context, int id) {
+		Resources resources = context.getResources();
+		String path = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+				+ resources.getResourcePackageName(id) + "/"
+				+ resources.getResourceTypeName(id) + "/"
+				+ resources.getResourceEntryName(id);
+		return Uri.parse(path);
 	}
 
 }

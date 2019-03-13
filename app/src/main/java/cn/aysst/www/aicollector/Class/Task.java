@@ -13,7 +13,7 @@ import java.util.List;
 public class Task implements Parcelable {
 
     public static final int TYPE_PICTURE = 0;
-    public static final int TYPE_VIDEO = 1;
+    public static final int TYPE_TEXT = 1;
     public static final int TYPE_AUDIO = 2;
 
     public static final int MY_TASK = 3;

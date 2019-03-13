@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/task_description"
+        android:id="@+id/task_description_on_do"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -72,20 +72,28 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/task_description"
+        android:layout_below="@+id/task_description_on_do"
+        android:layout_above="@+id/btn"
         android:id="@+id/recycler_view_ondotask"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants">
     </android.support.v7.widget.RecyclerView>
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/provide_for_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/btn"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_add"
         android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="提交"/>
 
 </RelativeLayout>
