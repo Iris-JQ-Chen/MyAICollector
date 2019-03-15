@@ -37,7 +37,7 @@
                 android:layout_marginRight="10dp"
                 android:maxLines="3"
                 android:textSize="18sp"
-                android:text="别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息"/>
+                android:text="别人的任务的信息"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="别人的任务的发布者"/>
+                    android:text="发布者"/>
                 <TextView
                     android:id="@+id/other_task_type"
                     android:layout_width="0dp"
@@ -58,7 +58,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="别人的任务的类型" />
+                    android:text="类型" />
                 <TextView
                     android:id="@+id/other_task_gold"
                     android:layout_width="0dp"
@@ -66,14 +66,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="别人的任务的悬赏"/>
+                    android:text="悬赏money"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/task_description_on_do"
-        android:layout_above="@+id/btn"
+        android:layout_above="@+id/btn_confirm_provide"
         android:id="@+id/recycler_view_ondotask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -84,16 +84,17 @@
         android:id="@+id/provide_for_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn"
+        android:layout_above="@+id/btn_confirm_provide"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_add"
         android:layout_margin="16dp"/>
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn_confirm_provide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:text="提交"/>
+        android:text="确认提交"/>
 
 </RelativeLayout>
