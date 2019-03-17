@@ -27,8 +27,10 @@
             android:label=""
             android:theme="@style/AppTheme.Release" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".DoTaskActivity" />
-        <activity android:name=".SeeTaskActivity"></activity>
+        <activity android:name=".DoTaskActivity"
+            android:theme="@style/MyThemeNoActionBar"></activity>
+        <activity android:name=".SeeTaskActivity"
+            android:theme="@style/MyThemeNoActionBar"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="cn.aysst.www.aicollector.fileprovider"

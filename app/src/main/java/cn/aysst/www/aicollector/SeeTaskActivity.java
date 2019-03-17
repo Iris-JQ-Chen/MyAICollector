@@ -1,11 +1,17 @@
 package cn.aysst.www.aicollector;
 
 import android.content.Intent;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,9 +56,17 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
             provideForTaskList = new ArrayList<>();
         }
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_onseetask);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar_onseetask);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         findViewById(R.id.pull_up_onsee).setOnClickListener(this);
 
-        ((TextView)findViewById(R.id.my_task_name)).setText(myTask.getName());
+        collapsingToolbarLayout.setTitle(myTask.getName());
         ((TextView)findViewById(R.id.my_task_info)).setText(myTask.getInfo());
         ((TextView)findViewById(R.id.my_task_publisher)).setText(myTask.getPublishId()+"");
         try{
@@ -94,6 +108,15 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * 给视频任务配置recycler
      */
@@ -103,7 +126,8 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
         provideTextAdapter = new ProvideTextTaskSuperAdapter(providerForShowList);
         recyclerViewText.setLayoutManager(layoutManagerText);
         recyclerViewText.setAdapter(provideTextAdapter);
-        Log.d("AICollector","preTextRecycler");
+        recyclerViewText.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewText.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
@@ -115,6 +139,8 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
         providePicAdapter = new ProvidePictureTaskSuperAdapter(providerForShowList);
         recyclerViewPic.setLayoutManager(layoutManagerPic);
         recyclerViewPic.setAdapter(providePicAdapter);
+        recyclerViewPic.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewPic.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
@@ -126,7 +152,8 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
         provideAudAdapter = new ProvideAudioTaskSuperAdapter(providerForShowList);
         recyclerViewAud.setLayoutManager(layoutManagerAud);
         recyclerViewAud.setAdapter(provideAudAdapter);
-        Log.d("AICollector","preAudRecycler");
+        recyclerViewAud.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewAud.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void initProviderForShowList(){

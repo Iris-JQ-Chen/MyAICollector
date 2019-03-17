@@ -16,16 +16,21 @@ import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -101,10 +106,18 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
             provideList = new ArrayList<ProvideForTask>();
         }
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_ondotask);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar_ondotask);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         floatingActionButton = findViewById(R.id.provide_for_task);
         floatingActionButton.setOnClickListener(this);
 
-        ((TextView)findViewById(R.id.other_task_name)).setText(otherTask.getName());
+        collapsingToolbarLayout.setTitle(otherTask.getName());
         ((TextView)findViewById(R.id.other_task_info)).setText(otherTask.getInfo()+"\n"+otherTask.getTime());
         ((TextView)findViewById(R.id.other_task_publisher)).setText(otherTask.getPublishId()+"");
         try {
@@ -142,6 +155,15 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -314,7 +336,8 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         provideTextAdapter = new ProvideTextTaskSuperAdapter(providerShowList);
         recyclerViewText.setLayoutManager(layoutManagerText);
         recyclerViewText.setAdapter(provideTextAdapter);
-        Log.d("AICollector","preTextRecycler");
+        recyclerViewText.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewText.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
@@ -326,6 +349,8 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         providePicAdapter = new ProvidePictureTaskSuperAdapter(providerShowList);
         recyclerViewPic.setLayoutManager(layoutManagerPic);
         recyclerViewPic.setAdapter(providePicAdapter);
+        recyclerViewPic.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewPic.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
@@ -337,7 +362,8 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         provideAudAdapter = new ProvideAudioTaskSuperAdapter(providerShowList);
         recyclerViewAud.setLayoutManager(layoutManagerAud);
         recyclerViewAud.setAdapter(provideAudAdapter);
-        Log.d("AICollector","preAudRecycler");
+        recyclerViewAud.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerViewAud.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**
