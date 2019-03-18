@@ -2,11 +2,14 @@ package cn.aysst.www.aicollector.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,6 +24,7 @@ import cn.aysst.www.aicollector.R;
  */
 
 public class ProvideAudioTaskSuperAdapter extends RecyclerView.Adapter<ProvideAudioTaskSuperAdapter.ViewHolder>{
+    private Context mContext;
     private List<ProviderForShow> providerForShowList;
     public ProvideAudioTaskSuperAdapter (List<ProviderForShow> providerForShowList){ this.providerForShowList = providerForShowList; }
 
@@ -33,7 +37,7 @@ public class ProvideAudioTaskSuperAdapter extends RecyclerView.Adapter<ProvideAu
             mCardView = (CardView)itemView;
             mTextView = (TextView)(itemView.findViewById(R.id.provider_name_for_audio));
             mRecyclerView = (RecyclerView)(itemView.findViewById(R.id.recycler_view_sub_ondotask_for_audio));
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(itemView.getContext(),1);
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(itemView.getContext(),3);
             layoutManager.setAutoMeasureEnabled(true);
             mRecyclerView.setLayoutManager(layoutManager);
         }
@@ -41,8 +45,14 @@ public class ProvideAudioTaskSuperAdapter extends RecyclerView.Adapter<ProvideAu
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mContext != null){
+            mContext = parent.getContext();
+        }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.provide_audiotask_item_super,parent,false);
         ProvideAudioTaskSuperAdapter.ViewHolder holder = new ProvideAudioTaskSuperAdapter.ViewHolder(view);
+
+        holder.mRecyclerView.addItemDecoration(new DividerItemDecoration(parent.getContext(),DividerItemDecoration.VERTICAL));
+        holder.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         return holder;
     }
 
@@ -69,9 +79,11 @@ public class ProvideAudioTaskSuperAdapter extends RecyclerView.Adapter<ProvideAu
         public ProvideAudioTaskSubAdapter(List<String> uriStringList){ this.uriStringList = uriStringList; }
 
         class ViewHolder extends RecyclerView.ViewHolder{
+            ImageView mImageView;
             TextView mTextView;
             public ViewHolder(View itemView){
                 super(itemView);
+                mImageView = (ImageView)(itemView.findViewById(R.id.provide_audio_show));
                 mTextView = (TextView)(itemView.findViewById(R.id.provide_audio_uri_str));
             }
         }

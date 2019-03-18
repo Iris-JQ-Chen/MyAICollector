@@ -4,15 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/provide_text_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/ic_folder_open_black_24dp"/>
+
     <TextView
         android:id="@+id/provide_text_uri_str"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000">
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:maxLines="2"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:textColor="#777"
+        android:text="照片描述照片描述照片描述照片描述照片描述照片描述照片描述照片描述照片描述照片描述"/>
 
 </LinearLayout>

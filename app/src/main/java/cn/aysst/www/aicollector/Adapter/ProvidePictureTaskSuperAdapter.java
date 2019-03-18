@@ -6,8 +6,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,80 +30,8 @@ import cn.aysst.www.aicollector.R;
  * Created by 蒲公英之流 on 2019-02-22.
  */
 
-//public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<ProvidePictureTaskSuperAdapter.ViewHolder> {
-//
-//    private Context context;
-//    private List<ProvideForTask> provideForTaskList;
-//
-//    class ViewHolder extends RecyclerView.ViewHolder{
-//        ImageView providePictureImageView;
-//        public ViewHolder(View itemView){
-//            super(itemView);
-//            providePictureImageView = (ImageView)(itemView.findViewById(R.id.provide_picture));
-//        }
-//    }
-//
-//    public ProvidePictureTaskSuperAdapter(List<ProvideForTask> provideForTaskList) throws NullListInAdapterException{
-//        if (provideForTaskList == null){
-//            throw new NullListInAdapterException("ProvidePictureTaskAdapter构造时被传入空列表");
-//        }
-//        this.provideForTaskList = provideForTaskList;
-//    }
-//
-//    @Override
-//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        if(this.context == null){
-//            this.context = parent.getContext();
-//        }
-//        View view = LayoutInflater.from(this.context).inflate(R.layout.provide_picturetask_item_super,parent,false);
-//        ViewHolder holder = new ViewHolder(view);
-//        return holder;
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position) {
-//        ProvideForTask provideForTask = provideForTaskList.get(position);
-////        holder.providePictureImageView.setImageBitmap(stringToBitmap(provideForTask.getPictureUriStr()));
-//
-//        Uri uri = Uri.parse(provideForTask.getPictureUriStr());
-//        try {
-//            holder.providePictureImageView.setImageBitmap(MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return provideForTaskList.size();
-//    }
-//
-//    /**
-//     * Base64字符串转换成图片
-//     *
-//     * @param string
-//     * @return
-//     */
-//    public static Bitmap stringToBitmap(String string) {
-//        Bitmap bitmap = null;
-//        try {
-//            byte[] bitmapArray = Base64.decode(string, Base64.DEFAULT);
-//            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return bitmap;
-//    }
-//}
-
-
-
-
-
-
-
-
 public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<ProvidePictureTaskSuperAdapter.ViewHolder> {
+    private Context mContext;
     private List<ProviderForShow> providerForShowList;
     public ProvidePictureTaskSuperAdapter (List<ProviderForShow> providerForShowList) { this.providerForShowList = providerForShowList; }
 
@@ -121,8 +52,14 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mContext != null){
+            mContext = parent.getContext();
+        }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.provide_picturetask_item_super,parent,false);
         ProvidePictureTaskSuperAdapter.ViewHolder holder = new ProvidePictureTaskSuperAdapter.ViewHolder(view);
+
+        holder.mRecyclerView.addItemDecoration(new DividerItemDecoration(parent.getContext(),DividerItemDecoration.VERTICAL));
+        holder.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         return holder;
     }
 
@@ -141,8 +78,6 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
     }
 
 
-
-
     public class ProvidePictureTaskSubAdapter extends RecyclerView.Adapter<ProvidePictureTaskSuperAdapter.ProvidePictureTaskSubAdapter.ViewHolder> {
 
         private Context mContext;
@@ -152,9 +87,11 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
 
         class ViewHolder extends RecyclerView.ViewHolder{
             ImageView mImageView;
+            TextView mTextView;
             public ViewHolder(View itemView){
                 super(itemView);
                 mImageView = (ImageView)(itemView.findViewById(R.id.provide_picture));
+                mTextView = (TextView)(itemView.findViewById(R.id.provide_picture_name));
             }
         }
 
@@ -176,10 +113,12 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(this.mContext.getContentResolver().openInputStream(uri));
                 holder.mImageView.setImageBitmap(bitmap);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            holder.mTextView.setText(uriPicString);
+            holder.mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
         }
 
         @Override
