@@ -1,0 +1,112 @@
+package com.example.sz.readtxtdemo;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+    private TextView tv1, tv2, tv3, tv4;
+    private String a, b, c, d,e,f,g,h;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initView();
+
+        //读取raw文件中
+        initRaw();
+        initAssets();
+
+
+    }
+
+    public void initView() {
+        tv1 = findViewById(R.id.tv_tv1);
+        tv2 = findViewById(R.id.tv_tv2);
+        tv3 = findViewById(R.id.tv_tv3);
+        tv4 = findViewById(R.id.tv_tv4);
+
+    }
+
+    public void initRaw() {
+        InputStream inputStream = getResources().openRawResource(R.raw.a);
+
+        String str = getString(inputStream);
+        Log.e(TAG, "onCreate: ----str------" + str);
+
+        tv1.setText(str);
+
+        String[] arr = str.split("\\s+");
+        for (String ss : arr) {
+            Log.e(TAG, "onCreate: -------ss------" + ss);
+
+            e = arr[0];
+            f = arr[1];
+            g = arr[2];
+            h = arr[3];
+            Log.e(TAG, "onCreate: -----------" + e + "---" + f + "---" + g + "---" + h);
+        }
+        tv2.setText(e + "\n" + f + "\n" + f + "\n" + h);
+
+    }
+
+    public void initAssets() {
+
+        try {
+            InputStream inputStream = getAssets().open("b.txt");
+
+            String str = getString(inputStream);
+            Log.e(TAG, "onCreate: ----str------" + str);
+
+            tv3.setText(str);
+
+            String[] arr = str.split("\\s+");
+            for (String ss : arr) {
+                Log.e(TAG, "onCreate: -------ss------" + ss);
+
+                a = arr[0];
+                b = arr[1];
+                c = arr[2];
+                d = arr[3];
+                Log.e(TAG, "onCreate: -----------" + a + "---" + b + "---" + c + "---" + d);
+            }
+            tv4.setText(a + "\n" + b + "\n" + c + "\n" + d);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+
+
+    }
+
+    public static String getString(InputStream inputStream) {
+        InputStreamReader inputStreamReader = null;
+        try {
+            inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        StringBuffer sb = new StringBuffer("");
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                sb.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+}
