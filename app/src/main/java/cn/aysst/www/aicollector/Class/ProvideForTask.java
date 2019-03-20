@@ -17,15 +17,19 @@ public class ProvideForTask implements Parcelable {
     private String textUriStr;
     private String audioUriStr;
     private String providerName;
+    private int provideID;
+    private String provideTime;
 
     public ProvideForTask(){}
-    public ProvideForTask(int taskType,String taskName,String pictureUriStr,String textUriStr,String audioUriStr,String providerName){
+    public ProvideForTask(int taskType,String taskName,String pictureUriStr,String textUriStr,String audioUriStr,String providerName,int provideID,String provideTime){
         this.taskType = taskType;
         this.taskName = taskName;
         this.pictureUriStr = pictureUriStr;
         this.textUriStr = textUriStr;
         this.audioUriStr = audioUriStr;
         this.providerName = providerName;
+        this.provideID = provideID;
+        this.provideTime = provideTime;
     }
 
     public int getTaskType() {
@@ -70,6 +74,20 @@ public class ProvideForTask implements Parcelable {
         this.providerName = providerName;
     }
 
+    public int getProvideID() {
+        return provideID;
+    }
+    public void setProvideID(int provideID) {
+        this.provideID = provideID;
+    }
+
+    public String getProvideTime() {
+        return provideTime;
+    }
+    public void setProvideTime(String provideTime) {
+        this.provideTime = provideTime;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -84,6 +102,8 @@ public class ProvideForTask implements Parcelable {
         dest.writeString(textUriStr);
         dest.writeString(audioUriStr);
         dest.writeString(providerName);
+        dest.writeInt(provideID);
+        dest.writeString(provideTime);
     }
 
     public static final Parcelable.Creator<ProvideForTask> CREATOR = new Creator<ProvideForTask>() {
@@ -97,6 +117,8 @@ public class ProvideForTask implements Parcelable {
             provideForTask.setTextUriStr(source.readString());
             provideForTask.setAudioUriStr(source.readString());
             provideForTask.setProviderName(source.readString());
+            provideForTask.setProvideID(source.readInt());
+            provideForTask.setProvideTime(source.readString());
             return provideForTask;
         }
 

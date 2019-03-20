@@ -10,17 +10,15 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.aysst.www.aicollector.Adapter.ProvideAudioTaskSuperAdapter;
-import cn.aysst.www.aicollector.Adapter.ProvidePictureTaskSuperAdapter;
+import cn.aysst.www.aicollector.Adapter.ProvideOnSeeTaskAdapter;
 import cn.aysst.www.aicollector.Adapter.ProvideTextTaskSuperAdapter;
 import cn.aysst.www.aicollector.Class.ProvideForTask;
 import cn.aysst.www.aicollector.Class.ProviderForShow;
@@ -38,9 +36,12 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
     private LinearLayoutManager layoutManagerPic;
     private LinearLayoutManager layoutManagerText;
     private LinearLayoutManager layoutManagerAud;
-    private ProvidePictureTaskSuperAdapter providePicAdapter;
-    private ProvideTextTaskSuperAdapter provideTextAdapter;
-    private ProvideAudioTaskSuperAdapter provideAudAdapter;
+//    private ProvidePictureTaskSuperAdapter providePicAdapter;
+//    private ProvideTextTaskSuperAdapter provideTextAdapter;
+//    private ProvideAudioTaskSuperAdapter provideAudAdapter;
+    private ProvideOnSeeTaskAdapter providePicAdapter;
+    private ProvideOnSeeTaskAdapter provideTextAdapter;
+    private ProvideOnSeeTaskAdapter provideAudAdapter;
 
     private int MY_TASK_TYPE;
 
@@ -121,9 +122,17 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
      * 给视频任务配置recycler
      */
     private void preTextRecycler()throws NullListInAdapterException {
+//        recyclerViewText = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
+//        layoutManagerText = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+//        provideTextAdapter = new ProvideTextTaskSuperAdapter(providerForShowList);
+//        recyclerViewText.setLayoutManager(layoutManagerText);
+//        recyclerViewText.setAdapter(provideTextAdapter);
+//        recyclerViewText.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+//        recyclerViewText.setItemAnimator(new DefaultItemAnimator());
+
         recyclerViewText = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
         layoutManagerText = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        provideTextAdapter = new ProvideTextTaskSuperAdapter(providerForShowList);
+        provideTextAdapter = new ProvideOnSeeTaskAdapter(provideForTaskList);
         recyclerViewText.setLayoutManager(layoutManagerText);
         recyclerViewText.setAdapter(provideTextAdapter);
         recyclerViewText.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -134,9 +143,17 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
      * 给图片任务配置recycler
      */
     private void prePicRecycler()throws NullListInAdapterException{
+//        recyclerViewPic = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
+//        layoutManagerPic = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+//        providePicAdapter = new ProvidePictureTaskSuperAdapter(providerForShowList);
+//        recyclerViewPic.setLayoutManager(layoutManagerPic);
+//        recyclerViewPic.setAdapter(providePicAdapter);
+//        recyclerViewPic.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+//        recyclerViewPic.setItemAnimator(new DefaultItemAnimator());
+
         recyclerViewPic = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
         layoutManagerPic = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        providePicAdapter = new ProvidePictureTaskSuperAdapter(providerForShowList);
+        providePicAdapter = new ProvideOnSeeTaskAdapter(provideForTaskList);
         recyclerViewPic.setLayoutManager(layoutManagerPic);
         recyclerViewPic.setAdapter(providePicAdapter);
         recyclerViewPic.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -147,9 +164,17 @@ public class SeeTaskActivity extends AppCompatActivity implements View.OnClickLi
      * 给音频任务配置recycler
      */
     private void preAudRecycler()throws NullListInAdapterException{
+//        recyclerViewAud = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
+//        layoutManagerAud = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+//        provideAudAdapter = new ProvideAudioTaskSuperAdapter(providerForShowList);
+//        recyclerViewAud.setLayoutManager(layoutManagerAud);
+//        recyclerViewAud.setAdapter(provideAudAdapter);
+//        recyclerViewAud.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+//        recyclerViewAud.setItemAnimator(new DefaultItemAnimator());
+
         recyclerViewAud = (RecyclerView)findViewById(R.id.recycler_view_onseetask);
         layoutManagerAud = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        provideAudAdapter = new ProvideAudioTaskSuperAdapter(providerForShowList);
+        provideAudAdapter = new ProvideOnSeeTaskAdapter(provideForTaskList);
         recyclerViewAud.setLayoutManager(layoutManagerAud);
         recyclerViewAud.setAdapter(provideAudAdapter);
         recyclerViewAud.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));

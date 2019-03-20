@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -94,7 +95,22 @@ public class ProvideAudioTaskSuperAdapter extends RecyclerView.Adapter<ProvideAu
                 mContext = parent.getContext();
             }
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.provide_audiotask_item_sub,parent,false);
-            ProvideAudioTaskSuperAdapter.ProvideAudioTaskSubAdapter.ViewHolder holder = new ProvideAudioTaskSuperAdapter.ProvideAudioTaskSubAdapter.ViewHolder(view);
+            final ProvideAudioTaskSuperAdapter.ProvideAudioTaskSubAdapter.ViewHolder holder = new ProvideAudioTaskSuperAdapter.ProvideAudioTaskSubAdapter.ViewHolder(view);
+
+            holder.mImageView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(mContext,holder.mTextView.getText()+"长按事件触发",Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
+            holder.mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext,"点击事件触发",Toast.LENGTH_SHORT).show();
+                }
+            });
             return holder;
         }
 

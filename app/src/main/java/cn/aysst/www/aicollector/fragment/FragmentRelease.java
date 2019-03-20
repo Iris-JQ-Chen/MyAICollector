@@ -143,6 +143,7 @@ public class FragmentRelease extends Fragment{
 			ProvideForTask provideForTask = new ProvideForTask();
 			provideForTask.setPictureUriStr(getUriFromDrawableRes(getActivity(),R.drawable.apple).toString());
 			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTask.setTaskType(Task.TYPE_PICTURE);
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
@@ -152,8 +153,10 @@ public class FragmentRelease extends Fragment{
 		List<ProvideForTask> provideForTaskList = new ArrayList<>();
 		for(int i = 0;i<14;i++){
 			ProvideForTask provideForTask = new ProvideForTask();
-			provideForTask.setTextUriStr("textUriStringTEST"+i);
+//			provideForTask.setTextUriStr("textUriStringTEST"+i);
+			provideForTask.setTextUriStr(getAssetsTextUri());
 			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTask.setTaskType(Task.TYPE_TEXT);
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
@@ -163,8 +166,10 @@ public class FragmentRelease extends Fragment{
 		List<ProvideForTask> provideForTaskList = new ArrayList<>();
 		for(int i = 0;i<14;i++){
 			ProvideForTask provideForTask = new ProvideForTask();
-			provideForTask.setAudioUriStr("audioUriStringTEST"+i);
+//			provideForTask.setAudioUriStr("audioUriStringTEST"+i);
+			provideForTask.setAudioUriStr(getAssetsAudUri());
 			provideForTask.setProviderName(new Random().nextInt(5)+"");
+			provideForTask.setTaskType(Task.TYPE_AUDIO);
 			provideForTaskList.add(provideForTask);
 		}
 		return provideForTaskList;
@@ -183,5 +188,37 @@ public class FragmentRelease extends Fragment{
 				+ resources.getResourceTypeName(id) + "/"
 				+ resources.getResourceEntryName(id);
 		return Uri.parse(path);
+	}
+
+	private String getAssetsTextUri(){
+		int i = new Random().nextInt(4);
+		switch (i){
+			case 0:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.t1).toString();
+			case 1:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.t2).toString();
+			case 2:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.t3).toString();
+			case 3:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.txt44).toString();
+			default:
+				return null;
+		}
+	}
+
+	private String getAssetsAudUri(){
+		int i = new Random().nextInt(5);
+		switch (i){
+			case 0:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.a1).toString();
+			case 1:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.a2).toString();
+			case 2:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.a3).toString();
+			case 3:
+				return Uri.parse("android.resource://"+getContext().getPackageName()+"/"+ R.raw.mp344).toString();
+			default:
+				return null;
+		}
 	}
 }

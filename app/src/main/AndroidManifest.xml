@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.aysst.www.aicollector">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -28,10 +28,13 @@
             android:label=""
             android:theme="@style/AppTheme.Release" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".DoTaskActivity"
-            android:theme="@style/MyThemeNoActionBar"></activity>
-        <activity android:name=".SeeTaskActivity"
-            android:theme="@style/MyThemeNoActionBar"></activity>
+        <activity
+            android:name=".DoTaskActivity"
+            android:theme="@style/MyThemeNoActionBar" />
+        <activity
+            android:name=".SeeTaskActivity"
+            android:theme="@style/MyThemeNoActionBar" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="cn.aysst.www.aicollector.fileprovider"
@@ -39,8 +42,12 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".ShowPictureActivity" />
+        <activity android:name=".ShowAudioActivity" />
+        <activity android:name=".ShowTextActivity"></activity>
     </application>
 
 </manifest>

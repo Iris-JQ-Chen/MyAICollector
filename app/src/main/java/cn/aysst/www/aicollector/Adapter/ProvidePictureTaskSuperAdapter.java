@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -106,7 +107,7 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
         }
 
         @Override
-        public void onBindViewHolder(ProvidePictureTaskSuperAdapter.ProvidePictureTaskSubAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(final ProvidePictureTaskSuperAdapter.ProvidePictureTaskSubAdapter.ViewHolder holder, int position) {
             String uriPicString = uriPicStrList.get(position);
             Uri uri = Uri.parse(uriPicString);
 
@@ -119,6 +120,21 @@ public class ProvidePictureTaskSuperAdapter extends RecyclerView.Adapter<Provide
 
             holder.mTextView.setText(uriPicString);
             holder.mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
+
+            holder.mImageView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(mContext,holder.mTextView.getText()+"长按事件触发",Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
+            holder.mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext,"点击事件触发",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @Override
