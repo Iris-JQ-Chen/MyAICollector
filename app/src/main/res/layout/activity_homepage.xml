@@ -91,33 +91,30 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_mail"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/my_mail_onhomepage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:gravity="center"
                         android:clickable="true"
                         android:text="我的邮箱:"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/show_mail_onhomepage"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="10"
                         android:gravity="left"
-                        android:textSize="18sp"
-                        android:text="lcy@mail"/>
+                        android:textSize="16sp"
+                        android:text="2906514421@outlook.com"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,15 +130,11 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_phone"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/my_phone_onhomepage"
                         android:layout_width="wrap_content"
@@ -150,14 +143,15 @@
                         android:layout_marginRight="15dp"
                         android:clickable="true"
                         android:text="我的手机"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/show_phone_onhomepage"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_gravity="center"
                         android:gravity="left"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="12345678901"/>
                 </LinearLayout>
                 <LinearLayout
@@ -174,15 +168,11 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_sex"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/my_sex_onhomepage"
                         android:layout_width="wrap_content"
@@ -191,14 +181,15 @@
                         android:layout_marginRight="15dp"
                         android:clickable="true"
                         android:text="我的性别"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/show_sex_onhomepage"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_weight="10"
+                        android:layout_marginLeft="30dp"
                         android:gravity="left"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="男"/>
                 </LinearLayout>
                 <LinearLayout
@@ -215,15 +206,11 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_collect"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/my_release_onhomepage"
                         android:layout_width="wrap_content"
@@ -232,14 +219,14 @@
                         android:layout_marginRight="15dp"
                         android:clickable="true"
                         android:text="我的发布"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/show_collect_onhomepage"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_weight="10"
                         android:gravity="left"
-                        android:textSize="18sp"/>
+                        android:textSize="16sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -255,15 +242,11 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"/>
+                        android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/ic_lable"/>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/my_answer_onhomepage"
                         android:layout_width="wrap_content"
@@ -272,19 +255,39 @@
                         android:layout_marginRight="15dp"
                         android:clickable="true"
                         android:text="我的回答"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/show_tag_onhomepage"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="7"
+                        android:layout_weight="10"
                         android:gravity="left"
-                        android:textSize="18sp"/>
+                        android:textSize="16sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:background="#dbdbdb"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_my"
+                    android:textColor="#fff"
+                    android:text="今日签到"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/btn_my"
+                    android:textColor="#fff"
+                    android:text="退出登录"/>
 
             </LinearLayout>
         </ScrollView>

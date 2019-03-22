@@ -37,21 +37,11 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/other_task_info"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:maxLines="3"
-                            android:textSize="18sp"
-                            android:text="别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
                             android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/other_task_publisher"
@@ -60,7 +50,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:maxLines="1"
-                                android:text="发布者"/>
+                                android:text="发布者：xxx"/>
                             <TextView
                                 android:id="@+id/other_task_type"
                                 android:layout_width="0dp"
@@ -68,7 +58,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:maxLines="1"
-                                android:text="类型" />
+                                android:text="类型：图片" />
                             <TextView
                                 android:id="@+id/other_task_gold"
                                 android:layout_width="0dp"
@@ -76,8 +66,18 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:maxLines="1"
-                                android:text="悬赏money"/>
+                                android:text="赏金：5.00"/>
                         </LinearLayout>
+                        <TextView
+                            android:id="@+id/other_task_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:maxLines="3"
+                            android:textSize="18sp"
+                            android:text="别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息别人的任务的信息"/>
                     </LinearLayout>
                 </LinearLayout>
                 <android.support.v7.widget.Toolbar

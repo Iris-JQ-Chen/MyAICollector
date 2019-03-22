@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -92,6 +93,13 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.my_sex_layout).setOnClickListener(this);
         findViewById(R.id.my_release_layout).setOnClickListener(this);
         findViewById(R.id.my_answer_layout).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("个人信息");
     }
 
     @Override
