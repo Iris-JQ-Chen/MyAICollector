@@ -2,10 +2,12 @@ package cn.aysst.www.aicollector;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.menu.MenuAdapter;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.leon.lfilepickerlibrary.LFilePicker;
+import com.leon.lfilepickerlibrary.utils.Constant;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,PopupMenu.OnMenuItemClickListener {
     private TabLayout mTabLayout;
@@ -74,15 +83,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Toast.makeText(MainActivity.this,"MainActivity_nav_camera",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-
+            Toast.makeText(MainActivity.this,"MainActivity_nav_gallary",Toast.LENGTH_SHORT).show();
+            Matisse.from(MainActivity.this)
+                    .choose(MimeType.allOf())//图片类型
+                    .countable(true)//true:选中后显示数字;false:选中后显示对号
+                    .maxSelectable(0)//可选的最大数
+                    .capture(false)//选择照片时，是否显示拍照
+                    .captureStrategy(new CaptureStrategy(true, "cn.aysst.www.aicollector.fileprovider"))//参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
+                    .imageEngine(new GlideEngine())//图片加载引擎
+                    .forResult(1);
         } else if (id == R.id.nav_vedio) {
-
+            new LFilePicker()
+                    .withActivity(MainActivity.this)
+                    .withRequestCode(2)
+                    .withIconStyle(Constant.ICON_STYLE_YELLOW)
+                    .withMutilyMode(true)
+                    .withTitle("选择文件")
+                    .withBackgroundColor("#FFFFFF")
+                    .withTitleColor("#000000")
+                    .withFileFilter(new String[]{".wav",".aif",".au",".mp3",".ram",".wma",".mmf",".amr",".aac",".flac"})
+                    .withBackIcon(Constant.BACKICON_STYLEONE)
+                    .start();
         } else if (id == R.id.nav_money) {
 
         } else if (id == R.id.nav_record) {
-
+            Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_settings) {
