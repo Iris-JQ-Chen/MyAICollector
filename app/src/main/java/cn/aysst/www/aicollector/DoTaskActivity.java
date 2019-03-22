@@ -48,6 +48,7 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,6 +58,7 @@ import java.util.Random;
 import cn.aysst.www.aicollector.Adapter.ProvideAudioTaskSuperAdapter;
 import cn.aysst.www.aicollector.Adapter.ProvidePictureTaskSuperAdapter;
 import cn.aysst.www.aicollector.Adapter.ProvideTextTaskSuperAdapter;
+import cn.aysst.www.aicollector.Class.PhotoBitmapUtils;
 import cn.aysst.www.aicollector.Class.ProvideForTask;
 import cn.aysst.www.aicollector.Class.ProviderForShow;
 import cn.aysst.www.aicollector.Class.Task;
@@ -90,6 +92,8 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
     private ProvidePictureTaskSuperAdapter providePicAdapter;
     private ProvideTextTaskSuperAdapter provideTextAdapter;
     private ProvideAudioTaskSuperAdapter provideAudAdapter;
+
+    private String fileName = "";
 
     private int MY_TASK_TYPE;
 
@@ -171,6 +175,17 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
         switch (requestCode){
             case TAKE_PHOTO:
                 if(resultCode == RESULT_OK){
+                    String filePath = PhotoBitmapUtils.amendRotatePhoto(fileName,DoTaskActivity.this);
+                    if (Build.VERSION.SDK_INT >= 24){
+                        imageUri = FileProvider.getUriForFile(DoTaskActivity.this,"cn.aysst.www.aicollector.fileprovider",new File(filePath));
+                    }else {
+                        imageUri = Uri.fromFile(new File(filePath));
+                    }
+                    File file = new File(fileName);
+                    if (file.exists()){
+                        file.delete();
+                    }
+
                     provideListAdd(imageUri.toString());
                     providerShowListAdd(imageUri.toString());
                 }
@@ -371,22 +386,22 @@ public class DoTaskActivity extends AppCompatActivity implements View.OnClickLis
      * 打开照相机
      */
     private void openCamera(){
-        String outputImageName = getTime()+".jpg";
-        File outputImage = new File(getExternalCacheDir(),outputImageName);
-        try {
-            if(outputImage.exists()){
-                outputImage.delete();
+        fileName = PhotoBitmapUtils.getPhotoFileName(DoTaskActivity.this);
+        File file = new File(fileName);
+        if (!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            outputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
         if (Build.VERSION.SDK_INT >= 24){
-            imageUri = FileProvider.getUriForFile(DoTaskActivity.this,"cn.aysst.www.aicollector.fileprovider",outputImage);
+            imageUri = FileProvider.getUriForFile(DoTaskActivity.this,"cn.aysst.www.aicollector.fileprovider",file);
         }else {
-            imageUri = Uri.fromFile(outputImage);
+            imageUri = Uri.fromFile(file);
         }
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
         startActivityForResult(intent,TAKE_PHOTO);
     }
