@@ -40,8 +40,8 @@ public class ShowTextActivity extends AppCompatActivity implements View.OnClickL
         textUri = Uri.parse(provideForTask.getTextUriStr());
         try {
             textInputStream = getContentResolver().openInputStream(textUri);
-            textOuputStream = getContentResolver().openOutputStream(textUri);
             textString = getStringFromInputStream(textInputStream);
+            textOuputStream = getContentResolver().openOutputStream(textUri);
         }catch (Exception e){
             e.printStackTrace();
         }

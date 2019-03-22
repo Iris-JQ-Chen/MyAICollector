@@ -2,6 +2,7 @@ package cn.aysst.www.aicollector;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -93,6 +94,7 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.my_sex_layout).setOnClickListener(this);
         findViewById(R.id.my_release_layout).setOnClickListener(this);
         findViewById(R.id.my_answer_layout).setOnClickListener(this);
+        findViewById(R.id.go_attend_on_homepage).setOnClickListener(this);
     }
 
     @Override
@@ -160,6 +162,10 @@ public class HomePageActivity extends AppCompatActivity implements View.OnClickL
                 }else {
                     return;
                 }
+            case R.id.go_attend_on_homepage:
+                Intent intent = new Intent(HomePageActivity.this,AttendActivity.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }

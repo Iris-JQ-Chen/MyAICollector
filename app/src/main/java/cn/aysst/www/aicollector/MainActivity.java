@@ -82,9 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Toast.makeText(MainActivity.this,"MainActivity_nav_camera",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_gallery) {
             Toast.makeText(MainActivity.this,"MainActivity_nav_gallary",Toast.LENGTH_SHORT).show();
             Matisse.from(MainActivity.this)
                     .choose(MimeType.allOf())//图片类型
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .captureStrategy(new CaptureStrategy(true, "cn.aysst.www.aicollector.fileprovider"))//参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
                     .imageEngine(new GlideEngine())//图片加载引擎
                     .forResult(1);
-        } else if (id == R.id.nav_vedio) {
+        } else if (id == R.id.nav_file) {
             new LFilePicker()
                     .withActivity(MainActivity.this)
                     .withRequestCode(2)
@@ -107,16 +105,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .withBackIcon(Constant.BACKICON_STYLEONE)
                     .start();
         } else if (id == R.id.nav_money) {
-
+            Intent intent = new Intent(MainActivity.this,RechargeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_record) {
             Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_aboutAs) {
-
+        } if (id == R.id.nav_aboutAs) {
+            Intent intent = new Intent(MainActivity.this,AboutusActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

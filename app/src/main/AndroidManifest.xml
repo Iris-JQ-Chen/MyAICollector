@@ -47,7 +47,10 @@
 
         <activity android:name=".ShowPictureActivity" />
         <activity android:name=".ShowAudioActivity" />
-        <activity android:name=".ShowTextActivity"></activity>
+        <activity android:name=".ShowTextActivity" />
+        <activity android:name=".AttendActivity" />
+        <activity android:name=".RechargeActivity" />
+        <activity android:name=".AboutusActivity"></activity>
     </application>
 
 </manifest>
